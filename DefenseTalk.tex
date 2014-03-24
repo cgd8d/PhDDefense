@@ -1,0 +1,123 @@
+% Try doing this with beamer.
+
+\documentclass{beamer}
+
+\setbeamertemplate{footline}[page number]
+\setbeamertemplate{frametitle}[default][center]
+\setbeamertemplate{navigation symbols}{}
+\setbeamercovered{again covered={\opaqueness<1->{40}}}
+
+\usepackage{graphicx} % To include graphics.
+
+\title{A Search for the Neutrinoless Double Beta
+Decay of Xenon-136 with Improved
+Sensitivity from Waveform Denoising}
+
+\author{Clayton G. Davis}
+\date{April 3, 2014}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\section*{Outline}
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents
+\end{frame}
+
+\section{\texorpdfstring{$\beta\beta 2\nu$ and $\beta\beta 0\nu$}{Two-Neutrino and Neutrinoless Double-Beta} Decay}
+
+\begin{frame}
+\begin{center}
+\frametitle{What is Double-Beta Decay?}
+\end{center}
+\begin{columns}
+\begin{column}{.5\textwidth}
+\includegraphics<1>[keepaspectratio=true,height=180pt]{Avignone_fig02a.eps}
+\includegraphics<2>[keepaspectratio=true,height=180pt]{Avignone_fig02b.eps}\\
+\small Avignone et al., RMP 2008.
+\end{column}
+\begin{column}{.5\textwidth}
+\uncover<1>{Feynman diagram for $\beta\beta 2 \nu$ decay.   Equivalent to two single-$\beta$ decays:
+\[ 2n \rightarrow 2p + 2e^- + 2\bar{\nu}_e \]}%
+\uncover<2>{Feynman diagram for $\beta\beta 0 \nu$ decay.   Neutrinos annihilate each other:
+\[ 2n \rightarrow 2p + 2e^- \phantom{{} + 2\bar{\nu}_e}\]%
+$\beta\beta 2 \nu$ is allowed in the Standard Model; $\beta\beta 0 \nu$ is not.}%
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Implications of Double-Beta Decay}
+\end{center}
+\begin{columns}
+\begin{column}{.5\textwidth}
+\includegraphics[keepaspectratio=true,height=180pt]{Avignone_fig02b.eps}\\
+\small Avignone et al., RMP 2008.
+\end{column}
+\begin{column}{.5\textwidth}
+\begin{itemize}
+\item Lepton number changes:\[\Delta L = +2\]
+\item Neutrinos can convert to their own antiparticle:\[\bar{\nu}_R \rightarrow \nu_L\]
+\item Neutrinos have mass through a Majorana interaction:
+\[-\frac{m_L}{2}\left(\overline{\Psi^c_L} \Psi_L +  \overline{\Psi_L} \Psi^c_L\right)\]
+\[-\frac{m_R}{2}\left(\overline{\Psi^c_R} \Psi_R +  \overline{\Psi_R} \Psi^c_R\right)\]
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{The $A=136$ Isobar}
+\end{center}
+\begin{columns}
+\begin{column}{.5\textwidth}
+\includegraphics[keepaspectratio=true,width=\textwidth]{LevelDiagram.pdf}\\
+\end{column}
+\begin{column}{.5\textwidth}
+$^{136}$Cs undergoes single-$\beta$ decay.\\[\baselineskip]
+$^{136}$Xe cannot, due to energy conservation -- but it can $\beta\beta$ decay through $^{136}$Cs to $^{136}$Ba.\\[\baselineskip]
+The $Q$-value of $^{136}\text{Xe}\rightarrow ^{136}\text{Ba}$ is $2457.83 \pm 0.37$ keV, shared between all final products of the decay.\\[\baselineskip]
+We observe energy in electrons; energy in neutrinos is lost.
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Ideal Double-Beta Energy Spectrum}
+\end{center}
+\includegraphics[keepaspectratio=true,width=\textwidth]{IdealSpectrum.pdf}\\
+\only<1>{$^{136}$Xe $\beta\beta 2\nu$ produces a smooth energy spectrum; ``missing'' energy carried off by neutrinos.}
+\only<2>{$^{136}$Xe $\beta\beta 0\nu$ has no neutrinos, so no ``missing'' energy; mono-energetic peak at $Q = 2458$ keV.}
+\only<3>{If the $\beta\beta 0\nu$ peak exists, neutrinos have Majorana mass; peak height gives the scale of that mass.}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+\section{Usage}
+\subsection{Use 1}
+\subsection{Use 2}
+
+\section{Examples}
+\subsection{Example 1}
+
+\begin{frame}
+\frametitle{Backup Slides}
+\end{frame} % to enforce entries in the table of contents
+
+\end{document}
+

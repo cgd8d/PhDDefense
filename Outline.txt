@@ -1,0 +1,46 @@
+
+
+----------------------------------
+
+What is double-beta decay
+- Show Feynman diagram
+- If discovered, it implies X,Y,Z.
+- Show spectrum
+-- it's a mono-energetic peak; energy resolution is important.
+
+----------------------------------
+
+What is EXO-200
+- xenon
+- very clean materials
+- deep underground
+- two modes of energy measurement: light and charge
+- why are both modes important for energy resolution?
+- energy resolution is limited by scintillation
+
+----------------------------------
+
+Denoising
+- why does denoising look like something which should work
+- what are we going to try to do
+- mathematical setup
+- big matrix solution
+- solution takes place at NERSC; after significant optimization, 1 Hz/core, so 50,000 core-hours for our dataset.
+
+----------------------------------
+
+Results
+- Resolution-vs-energy plot
+- What does our fit look like
+-- comparison before/after in ROI
+- What does our profile curve look like before/after
+- What limit does that set (text-only slide, limit in counts, half-life, and mass, as a table)
+- Show Ge-vs-Xe plot
+
+---------------------------------
+
+Outlook?  (Or is that too much for this talk?)
+Conclusion
+
+
+
