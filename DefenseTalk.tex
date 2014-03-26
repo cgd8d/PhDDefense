@@ -179,48 +179,54 @@ They are anticorrelated -- better energy resolution from both together than eith
 
 \begin{frame}
 \begin{center}
-\frametitle{Primary Backgrounds: $^{232}$Th, $^{238}$U, and $^{137}$Xe}
-\end{center}
-Here I would show the three plots (with a dashed line to indicate Q-value):
-\begin{itemize}
-\item Thorium spectrum (SS and MS together)
-\item U spectrum (SS and MS together)
-\item Xe-137 spectrum (SS and MS together)
-\end{itemize}
-My concern is that maybe it's better if I don't mention SS and MS discrimination.  It's important, but it's not critical to my main point about the impact of denoising.  But if I have time or if it's critical, I can go back -- so hold off on making these plots.
-\end{frame}
-
-\begin{frame}
-\begin{center}
-\frametitle{Primary Backgrounds: $^{232}$Th, $^{238}$U, and \textcolor{red}{$^{137}$Xe}}
-\end{center}
-Show plot of Xe-137 first -- smooth background, smooth change in background vs energy resolution.
-\end{frame}
-
-\begin{frame}
-\begin{center}
-\frametitle{Primary Backgrounds: \textcolor{red}{$^{232}$Th}, $^{238}$U, and $^{137}$Xe}
+\frametitle{\hfill Primary Backgrounds:\\\hfill \textcolor{red}{$^{137}$Xe}, $^{232}$Th, and $^{238}$U}
 \end{center}
 \begin{columns}
 \begin{column}{.6\textwidth}
-\includegraphics[keepaspectratio=true,width=\textwidth]{Th_Spectra_vs_Res.pdf}
+\includegraphics[keepaspectratio=true,width=\textwidth]{Xe_Spectra_vs_Res.pdf}
 \end{column}
 \begin{column}{.4\textwidth}
-Description here.
+\vspace{.5cm}
+
+Energy resolution is measured as $\sigma$/mean of a mono-energetic peak at the $Q$-value.  Typically 1.5-2\% for EXO-200.\\[\baselineskip]
+
+Better resolution gives a sharper $\beta\beta 0\nu$ peak, so less background in that energy window.\\[\baselineskip]
+
+$^{137}$Xe spectrum is smooth around $Q$-value; background proportional to energy resolution.
 \end{column}
 \end{columns}
 \end{frame}
 
 \begin{frame}
 \begin{center}
-\frametitle{Primary Backgrounds: $^{232}$Th, \textcolor{red}{$^{238}$U}, and $^{137}$Xe}
+\frametitle{\hfill Primary Backgrounds:\\\hfill $^{137}$Xe, \textcolor{red}{$^{232}$Th}, and $^{238}$U}
+\end{center}
+\begin{columns}
+\begin{column}{.6\textwidth}
+\includegraphics[keepaspectratio=true,width=\textwidth]{Th_Spectra_vs_Res.pdf}
+\end{column}
+\begin{column}{.4\textwidth}
+Not all backgrounds are smooth.  $^{232}$Th has a gamma line at 2615 keV, so resolution reduces background sharply until 2457 and 2615 keV are well-separated around 1.2\%.\\[\baselineskip]
+
+Beyond that, resolution for $^{232}$Th is less important (though still helpful).
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{\hfill Primary Backgrounds:\\\hfill $^{137}$Xe, $^{232}$Th, and \textcolor{red}{$^{238}$U}}
 \end{center}
 \begin{columns}
 \begin{column}{.6\textwidth}
 \includegraphics[keepaspectratio=true,width=\textwidth]{U_Spectra_vs_Res.pdf}
 \end{column}
 \begin{column}{.4\textwidth}
-Description here.
+\vspace{0.5cm}
+
+$^{238}$U has a 2448-keV gamma line, indistinguishable from 2457-keV $Q$-value except with extremely good resolution.\\[\baselineskip]
+
+So, even down to 0.4\% energy resolution, most of the $^{238}$U peak at 2448 keV is still within our energy window.  $^{238}$U backgrounds aren't significantly reduced by resolution improvements.
 \end{column}
 \end{columns}
 \end{frame}
@@ -233,8 +239,28 @@ Description here.
 \includegraphics[keepaspectratio=true,width=\textwidth]{BackgroundsVsRes.pdf}
 \end{frame}
 
+\begin{frame}
+\begin{center}
+\frametitle{Time Variation of Resolution}
+\end{center}
+\vspace{1cm}
+\includegraphics[keepaspectratio=true,width=\textwidth]{ResolutionNoNoiseComparison.pdf}
+\end{frame}
 
-% Plots showing how background decreases with resolution
+\begin{frame}
+\begin{center}
+\frametitle{Time Variation of Resolution}
+\end{center}
+\vspace{1cm}
+\includegraphics[keepaspectratio=true,width=\textwidth]{ResolutionAPDNoiseComparison.pdf}
+\end{frame}
+
+% Resolution vs time.
+% Resolution vs time (with APD noise overlay).
+% Event display (correlated noise).
+% --> We should be able to fix this offline with some kind of "denoising."
+
+% Now go ahead and describe what an "optimal" scintillation measurement should look like (qualitatively).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
