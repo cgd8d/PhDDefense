@@ -261,12 +261,22 @@ So, even down to 0.4\% energy resolution, most of the $^{238}$U peak at 2448 keV
 \includegraphics[keepaspectratio=true,width=\textwidth]{ResolutionAPDNoiseComparison.pdf}
 \end{frame}
 
+% Hard to see (bad contrast).
+%\begin{frame}
+%\begin{center}
+%\frametitle{APD Noise is Correlated across Channels}
+%\end{center}
+%\vspace{1cm}
+%\includegraphics[keepaspectratio=true,width=\textwidth,clip=true,trim=1mm 21mm 91mm 24mm]{Run4705Ev5801_noiseEventDisplay.png}\\
+%\uncover<2>{Correlated noise $\Rightarrow$ offline denoising of some sort should work!}
+%\end{frame}
+
 \begin{frame}
 \begin{center}
 \frametitle{APD Noise is Correlated across Channels}
 \end{center}
 \vspace{1cm}
-\includegraphics[keepaspectratio=true,width=\textwidth,clip=true,trim=1mm 21mm 91mm 24mm]{Run4705Ev5801_noiseEventDisplay.png}\\
+\includegraphics[keepaspectratio=true,width=\textwidth,clip=true,trim=0mm 12mm 0mm 10mm]{Run4705Ev2_noiseEventDisplay.png}\\
 \uncover<2>{Correlated noise $\Rightarrow$ offline denoising of some sort should work!}
 \end{frame}
 
@@ -295,19 +305,29 @@ So, ``denoising'' for us means producing a noise-tolerant estimate of the scinti
 \begin{center}
 \frametitle{Types of Denoising}
 \end{center}
+\vspace{1cm}
 There are also three approaches to reducing the impact of noise:
 \begin{itemize}
-\item Frequency weighting.
-\item Channel weighting.
-\item Exploit noise correlations.
+\item<1,2> Frequency weighting.
+\item<1,3> Channel weighting.
+\item<1,4> Exploit noise correlations.
 \end{itemize}
-
-\textcolor{red}{On the bottom part (or right side) of the screen I can show three pictures which demonstrate how they'll be used:}
-\begin{itemize}
-\item power spectrum of noise vs signal.
-\item APD pulse magnitude vs channel (left side of event display for a typical SS Th event).
-\item Noise correlation heat plot, per Carter's request.
-\end{itemize}
+\begin{center}
+\parbox [t][60mm]{\textwidth}{ % To avoid jitter from changing vertical spacing.
+\only<2>{}
+\only<3>{
+\vspace{-0.5cm}\hfill APD pulse magnitudes.\\[0.5\baselineskip]
+\includegraphics[keepaspectratio=true,width=\textwidth,clip=true,trim=5mm 10mm 5mm 44mm]{APD_Planes.png}} % Run 4705 event 5799
+\only<4>{
+\vspace{-0.5cm}\hfill Noise correlations at 78.6 kHz.\\
+\includegraphics[keepaspectratio=true,width=\textwidth]{NoiseHeatPlot_161.pdf}} %Corresponding to frequency 78.6 kHz (f=161).
+}\end{center}
+%\textcolor{red}{On the bottom part (or right side) of the screen I can show three pictures which demonstrate how they'll be used:}
+%\begin{itemize}
+%\item power spectrum of noise vs signal.
+%\item APD pulse magnitude vs channel (left side of event display for a typical SS Th event).
+%\item Noise correlation heat plot, per Carter's request.
+%\end{itemize}
 \end{frame}
 
 \begin{frame}
