@@ -14,7 +14,13 @@
 \setbeamertemplate{navigation symbols}{}
 \setbeamercovered{again covered={\opaqueness<1->{40}}}
 
+\usefonttheme{serif} % Beamer guide recommends taking a look at futura, but I can't figure out how to pick a font family...
+
 \usepackage{graphicx} % To include graphics.
+\usepackage{enumitem} % For list customizability.
+\setitemize{label=\usebeamerfont*{itemize item}% enumitem and beamer conflict; this fixes it.
+  \usebeamercolor[fg]{itemize item}
+  \usebeamertemplate{itemize item}}
 
 \title{A Search for the Neutrinoless Double Beta
 Decay of Xenon-136 with Improved
@@ -255,12 +261,184 @@ So, even down to 0.4\% energy resolution, most of the $^{238}$U peak at 2448 keV
 \includegraphics[keepaspectratio=true,width=\textwidth]{ResolutionAPDNoiseComparison.pdf}
 \end{frame}
 
-% Resolution vs time.
-% Resolution vs time (with APD noise overlay).
-% Event display (correlated noise).
-% --> We should be able to fix this offline with some kind of "denoising."
+\begin{frame}
+\begin{center}
+\frametitle{APD Noise is Correlated across Channels}
+\end{center}
+\vspace{1cm}
+\includegraphics[keepaspectratio=true,width=\textwidth,clip=true,trim=1mm 21mm 91mm 24mm]{Run4705Ev5801_noiseEventDisplay.png}\\
+\uncover<2>{Correlated noise $\Rightarrow$ offline denoising of some sort should work!}
+\end{frame}
 
-% Now go ahead and describe what an "optimal" scintillation measurement should look like (qualitatively).
+\section{Denoising}
+
+\begin{frame}
+\begin{center}
+\frametitle{Types of Noise}
+\end{center}
+Three types of noise in the scintillation measurements:
+\begin{itemize}[leftmargin=*]
+\item Electronic noise.\hfill\uncover<2,4->{$\leftarrow$ Additive; use fewer channels.}
+\item Photon fluctuations.\hfill\uncover<3->{$\leftarrow$ Poissonian; use more channels.}
+\item Gain fluctuations.\hfill\uncover<3->{$\leftarrow$ Poissonian; use more channels.}
+\end{itemize}
+A ``denoising'' algorithm should minimize all three.\\[\baselineskip]
+
+\uncover<4->{Most denoising algorithms transform an input waveform to an output waveform, with pulses amplified and additive noise reduced.\\[\baselineskip]
+
+Here we're trying to reduce the impact of noise which is correlated with pulses.  That means traditional denoising won't accomplish what we need.\\[\baselineskip]
+
+So, ``denoising'' for us means producing a noise-tolerant estimate of the scintillation energy.}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Types of Denoising}
+\end{center}
+There are also three approaches to reducing the impact of noise:
+\begin{itemize}
+\item Frequency weighting.
+\item Channel weighting.
+\item Exploit noise correlations.
+\end{itemize}
+
+\textcolor{red}{On the bottom part (or right side) of the screen I can show three pictures which demonstrate how they'll be used:}
+\begin{itemize}
+\item power spectrum of noise vs signal.
+\item APD pulse magnitude vs channel (left side of event display for a typical SS Th event).
+\item Noise correlation heat plot, per Carter's request.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Waveform Model}
+\end{center}
+\vspace{0.5cm}
+When there is one energy deposit in the xenon, the APD waveform $X_i[f]$ (in frequency space) on channel $i$ can be modeled:
+\[X_i[f] = M_i Y_i[f] + N_i[f]\text{, where:}\]
+\begin{itemize}
+\item $Y_i[f]$ is the unit-magnitude template pulse for channel $i$.
+\item $M_i$ is the magnitude of the pulse observed on channel $i$, including the scintillation energy and Poisson fluctuations in photon statistics and gain.
+\item $N_i[f]$ is the additive (electronic) noise on channel $i$.\\[\baselineskip]
+\end{itemize}
+
+To complete our model, we need to understand the distributions of the random variables:
+\begin{itemize}
+\item How $M_i$ depends on the unknown energy $E$.
+\item How magnitudes $M_i$ and $M_j$ are correlated.
+\item How electronic noise $N_i[f]$ and $N_j[f]$ are correlated.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Electronic Noise}
+\end{center}
+To measure the electronic (additive) noise, we need waveforms with no pulse.
+
+Fortunately, EXO-200 is a low-background detector: most of the time all it measures is noise.\\[\baselineskip]
+
+So, this is fairly easy: use our noise data to measure all of the pairwise noise correlations.
+
+Explicitly, we measure:\\
+\begin{center}
+$\left<N_i^R[f]N_j^R[f]\right>$, $\left<N_i^R[f]N_j^I[f]\right>$, and $\left<N_i^I[f]N_j^I[f]\right>$,\\
+\end{center}
+where $N_i^R[f]$ and $N_i^I[f]$ are the real and imaginary parts of $N_i[f]$.
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Electronic Noise}
+\end{center}
+Main detail: the electronic noise changes over time (mostly in discontinuous steps).
+\textcolor{red}{Show plot of time windows (but I should really make it show the windows used/recommended, rather than events.}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Lightmaps}
+\end{center}
+\vspace{1cm}
+The expected pulse height $M_i$ on a channel $i$ from a deposit at position $\vec{x}$ and time $t$ is described by a lightmap $L_i(\vec{x},t)$:
+\[\left<M_i\right> = L_i(\vec{x},t)E.\]
+\begin{center}
+\parbox [t][70mm]{\textwidth}{ % To avoid jitter from changing vertical spacing.
+\only<1>{To measure $L_i(\vec{x},t)$, we need a known-energy deposit for all position and time bins.  But we don't have that much data: calibration sources give us good statistics, but aren't near every position.
+\begin{center}
+\includegraphics[keepaspectratio=true,width=.8\textwidth,clip=true,trim=0mm 0mm 0mm 50mm]{calibration_tube.jpg}
+\end{center}}
+\only<2>{To reduce the amount of statistics needed, we make an approximation that $L_i(\vec{x},t)$ is separable into spatial and temporal components:
+\[L_i(\vec{x},t) = R_i(\vec{x})S_i(t).\]
+So, rather than needing one known-energy deposit per position per time, we need one per position during the whole history of EXO-200.
+
+(We do this assuming that APD gain varies over time, but light collection does not, and gain does not depend on the position of the deposit.)}
+}\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Lightmaps}
+\end{center}
+With this simpler form for the lightmap, we can measure $R_i(\vec{x})$ and $S_i(t)$ by combining all thorium source calibration events from the $^{208}$Tl 2615-keV gamma line.  It is a clean, well-isolated peak:
+
+\textcolor{red}{Show the spectrum, indicating cuts.}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Lightmaps}
+\end{center}
+% Show visualizations of R and S.
+\end{frame}
+
+
+
+\begin{frame}
+\begin{center}
+% Placeholder slide
+\frametitle{\textcolor{red}{Finish convincing people that denoising can work; explain the sources of noise in more detail.}}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+\begin{center}
+\frametitle{Denoising: An Optimization Problem}
+\end{center}
+So, the waveforms $X_i[f]$ are modeled by:
+\[X_i[f] = M_i Y_i[f] + N_i[f],\]
+and we have full descriptions of the random variables $M_i$ and $N_i[f]$.
+
+Linear real-valued energy estimators $\widehat{E}$ take the form:
+\[\widehat{E} = \sum_{if} A_i[f] X^R_i[f] + B_i[f] X^I_i[f],\]
+where $A_i[f]$ and $B_i[f]$ are parameters we can adjust.\\[0.5\baselineskip]
+
+Problem: minimize the mean square error, $\left<\left(E-\widehat{E}\right)^2\right>$.\\[0.5\baselineskip]
+Constraint:  estimator is unbiased, $\left<E-\widehat{E}\right>=0$.
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Denoising: An Optimization Problem}
+\end{center}
+The solution is a big matrix equation
+\uncover<2>{which we write in a compact way:
+\[\begin{pmatrix}\mathbf{N+P}&C^{\top}\\C & 0\end{pmatrix}\begin{pmatrix}A\\\lambda\end{pmatrix} = \begin{pmatrix}0\\1\end{pmatrix}.\]
+
+The LHS matrix is a $143,\!291 \times 143,\!291$ sparse matrix with roughly twenty million non-zero entries.\\[\baselineskip]
+
+We need to solve this system once {\bf for each event}, and there are hundreds of millions of events.  Fortunately this is an embarassingly parallel problem, so we can just find a big computing system and do it.\\[\baselineskip]
+
+NERSC, at LBNL \textcolor{red}{CHECK THIS}, was used for this analysis; we required roughly 50,000 core-hours to do this processing.
+}
+\end{frame}
+
+
+% What does it mean that our optimization problem is positive-definite before the constraint is imposed, but not after?  Are we actually not getting an optimal solution??
+
+% What does 90% confidence mean for us?  Review (in the fitting document) exactly what hypothesis we're testing when we talk about coverage.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -276,6 +454,15 @@ So, even down to 0.4\% energy resolution, most of the $^{238}$U peak at 2448 keV
 \begin{center}
 \includegraphics[keepaspectratio=true,width=\textwidth]{RotatedIsland.png}
 \end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Why not the Anscombe transformation?}
+\end{center}
+The Anscombe transformation (and generalizations) are designed to transform Poisson noise into Gaussian noise.  However, for this purpose ``noise'' is defined to mean noise {\bf uncorrelated with pulse}.  We, on the other hand, are looking to understand noise which {\bf is} correlated with the pulse, and then minimize its effect.
+
+So, the Anscombe transformation doesn't really help us here.
 \end{frame}
 
 % X-ray attenuation
