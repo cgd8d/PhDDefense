@@ -14,7 +14,14 @@
 \setbeamertemplate{navigation symbols}{}
 \setbeamercovered{again covered={\opaqueness<1->{40}}}
 
-\usefonttheme{serif} % Beamer guide recommends taking a look at futura, but I can't figure out how to pick a font family...
+% Would be nice to know what kind of resolution projector I'm looking at.
+% My screen is SVGA, the equivalent of a low-end projector (800x600).
+% Next higher resolution is XGA (1024x768), which I would need Laura's computer to try.
+
+%\usefonttheme{serif} % Beamer guide recommends taking a look at futura, but I can't figure out how to pick a font family...
+\usepackage{arev}
+\renewcommand{\sfdefault}{arev}
+%\setbeamerfont{*}{family=arev}
 
 \usepackage{graphicx} % To include graphics.
 \usepackage{enumitem} % For list customizability.
@@ -314,7 +321,9 @@ There are also three approaches to reducing the impact of noise:
 \end{itemize}
 \begin{center}
 \parbox [t][60mm]{\textwidth}{ % To avoid jitter from changing vertical spacing.
-\only<2>{}
+\only<2>{
+\vspace{-0.5cm}\hfill Noise and pulse power spectra.\\
+\includegraphics[keepaspectratio=true,width=\textwidth]{NoisePowerSpectrum.pdf}} % Channel 152 noise
 \only<3>{
 \vspace{-0.5cm}\hfill APD pulse magnitudes.\\[0.5\baselineskip]
 \includegraphics[keepaspectratio=true,width=\textwidth,clip=true,trim=5mm 10mm 5mm 44mm]{APD_Planes.png}} % Run 4705 event 5799
@@ -451,7 +460,7 @@ The LHS matrix is a $143,\!291 \times 143,\!291$ sparse matrix with roughly twen
 
 We need to solve this system once {\bf for each event}, and there are hundreds of millions of events.  Fortunately this is an embarassingly parallel problem, so we can just find a big computing system and do it.\\[\baselineskip]
 
-NERSC, at LBNL \textcolor{red}{CHECK THIS}, was used for this analysis; we required roughly 50,000 core-hours to do this processing.
+NERSC, at LBNL, was used for this analysis; we required roughly 50,000 core-hours to do this processing.
 }
 \end{frame}
 
