@@ -23,6 +23,36 @@
 \renewcommand{\sfdefault}{arev}
 %\setbeamerfont{*}{family=arev}
 
+\usepackage{mdframed} % Make custom boxes.
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+
+\makeatletter
+\pgfdeclareshape{PhotonBin}{
+\inheritsavedanchors[from=rectangle] % this is nearly a rectangle
+%\inheritanchorborder[from=rectangle]
+\inheritanchor[from=rectangle]{center}
+\inheritanchor[from=rectangle]{north}
+\inheritanchor[from=rectangle]{south}
+\inheritanchor[from=rectangle]{west}
+\inheritanchor[from=rectangle]{east}
+
+\backgroundpath{% this is new
+% store lower left in xa/ya and upper right in xb/yb
+\southwest \pgf@xa=\pgf@x \pgf@ya=\pgf@y
+\northeast \pgf@xb=\pgf@x \pgf@yb=\pgf@y
+
+% construct main path
+\pgfpathmoveto{\pgfpoint{\pgf@xa}{\pgf@yb}}
+\pgfsetlinewidth{2pt}
+\pgfpathlineto{\pgfpoint{\pgf@xa}{\pgf@ya}}
+\pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@ya}}
+\pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@yb}}
+}
+}
+\makeatother
+
+\usepackage{framed} % For boxing things
 \usepackage{graphicx} % To include graphics.
 \usepackage{enumitem} % For list customizability.
 \setitemize{label=\usebeamerfont*{itemize item}% enumitem and beamer conflict; this fixes it.
@@ -410,27 +440,91 @@ So, rather than needing one known-energy deposit per position per time, we need 
 \begin{center}
 \frametitle{Lightmaps}
 \end{center}
+\vspace{1cm}
 With this simpler form for the lightmap, we can measure $R_i(\vec{x})$ and $S_i(t)$ by combining all thorium source calibration events from the $^{208}$Tl 2615-keV gamma line.  It is a clean, well-isolated peak:
-
-\textcolor{red}{Show the spectrum, indicating cuts.}
+\begin{center}
+\includegraphics[keepaspectratio=true,width=\textwidth]{Th_lightmap_cuts.pdf}
+\end{center}
 \end{frame}
 
 \begin{frame}
 \begin{center}
-\frametitle{Lightmaps}
+\frametitle{Lightmaps: $R_i(\vec{x})$}
 \end{center}
-% Show visualizations of R and S.
+\begin{center}
+\includegraphics[keepaspectratio=true,width=\textwidth,clip=true,trim=15mm 10mm 10mm 10mm]{Lightmap_viz_zoom.png}
+\end{center}
 \end{frame}
-
-
 
 \begin{frame}
 \begin{center}
-% Placeholder slide
-\frametitle{\textcolor{red}{Finish convincing people that denoising can work; explain the sources of noise in more detail.}}
+\frametitle{Lightmaps: $S_i(t)$}
+\end{center}
+\vspace{0.5cm}
+\begin{center}
+\includegraphics[keepaspectratio=true,width=\textwidth,clip=true,trim=5mm 0mm 20mm 15mm]{gainfunc_152.png}
 \end{center}
 \end{frame}
 
+\begin{frame}
+\newmdenv[topline=false,userdefinedwidth=2cm]{PhotonBoxStyle}
+\begin{center}
+\frametitle{Light Collection Noise}
+\end{center}
+\vspace{1cm}
+The expected pulse height $M_i$ on a channel $i$ from a deposit at position $\vec{x}$ and time $t$ is described by a lightmap $L_i(\vec{x},t)$:
+\[\left<M_i\right> = L_i(\vec{x},t)E.\]
+What about covariances of $M_i$?\\[\baselineskip]
+
+\parbox [t][60mm]{\textwidth}{ % To avoid jitter from changing vertical spacing.
+\only<1>{
+Photon collection by the APDs has a multinomial distribution:\\[-1.5\baselineskip]
+\begin{framed}
+\begin{tikzpicture}
+\node[draw,shape=ellipse,inner sep=0ex]{{\Huge $\ast$}$N$ photons};
+\end{tikzpicture}
+
+\hfill With photon collection $\left<P_i\right> = N\cdot f_i$,
+
+\hfill covariances are $cov(P_i,P_j) = N \cdot \left(f_i \delta_{ij} - f_i f_j\right)$.
+
+\begin{center}
+\begin{tikzpicture}
+\node[draw,shape=PhotonBin,inner sep=2ex]{$P_1$};
+\end{tikzpicture}
+\begin{tikzpicture}
+\node[draw,shape=PhotonBin,inner sep=2ex]{$P_2$};
+\end{tikzpicture}
+\begin{tikzpicture}
+\node[draw,shape=PhotonBin,inner sep=2ex]{$P_3$};
+\end{tikzpicture}
+\begin{tikzpicture}
+\node[draw,shape=PhotonBin,inner sep=2ex]{$P_4$};
+\end{tikzpicture}
+\begin{tikzpicture}
+\node[draw,shape=PhotonBin,inner sep=2ex]{$P_5$};
+\end{tikzpicture}
+\begin{tikzpicture}
+\node[draw,shape=PhotonBin,inner sep=2ex]{$P_6$};
+\end{tikzpicture}
+\begin{tikzpicture}
+\node[draw,shape=PhotonBin,inner sep=2ex]{$P_7$};
+\end{tikzpicture}
+\end{center}
+\end{framed}
+\vspace{-1.5cm}
+\begin{center}
+Photons randomly deposit on APDs (or are not observed).
+\end{center}
+}
+\only<2>{
+\textcolor{red}{Show a simplified picture of an APD as:
+\begin{itemize}
+\item A surface where photoelectrons are produced (quantum efficiency).
+\item A volume where gain is applied (gain fluctuations).
+\end{itemize}
+}}}
+\end{frame}
 
 \begin{frame}
 \begin{center}
@@ -464,6 +558,68 @@ NERSC, at LBNL, was used for this analysis; we required roughly 50,000 core-hour
 }
 \end{frame}
 
+\section{Results}
+
+\begin{frame}
+\begin{center}
+\frametitle{Energy Resolution (Before and After)}
+\end{center}
+\vspace{0.5cm}
+\begin{center}
+\includegraphics[keepaspectratio=true,width=\textwidth,clip=true,trim=0mm 0mm 10mm 10mm]{ResolutionFunctionComparison_relative.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Energy Resolution (Before and After)}
+\end{center}
+\vspace{0.6cm}
+\begin{center}
+\includegraphics[keepaspectratio=true,width=.95\textwidth]{RotatedReso_denoised_compVsTime.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Fits around $\beta \beta 0\nu$ (Before and After)}
+\end{center}
+\vspace{0.6cm}
+\begin{center}
+\includegraphics[keepaspectratio=true,width=\textwidth]{DenoisedVsUndenoised_TotalPdfsWithData.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Profile Likelihood (Before and After)}
+\end{center}
+\vspace{0.6cm}
+\begin{center}
+\includegraphics[keepaspectratio=true,width=\textwidth]{DenoisedVsUndenoised_bb0nProfiles.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Best Fit (Denoised)}
+\end{center}
+\vspace{0.6cm}
+\textcolor{red}{Add legend.}
+\begin{center}
+\includegraphics[keepaspectratio=true,width=\textwidth]{Energy_BestFit.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\includegraphics[keepaspectratio=true,width=3.7in]{MatplotLibSensitivity.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\textcolor{red}{Collaboration Slide}
+\end{frame}
 
 % What does it mean that our optimization problem is positive-definite before the constraint is imposed, but not after?  Are we actually not getting an optimal solution??
 
@@ -494,11 +650,32 @@ The Anscombe transformation (and generalizations) are designed to transform Pois
 So, the Anscombe transformation doesn't really help us here.
 \end{frame}
 
+\begin{frame}
+\begin{center}
+\frametitle{Impact of Rotated Energy}
+\end{center}
+\begin{center}
+\includegraphics[keepaspectratio=true,width=\textwidth]{RotationTh2D_ImprovementInResolution.png}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Energy Resolution (Before and After)}
+\end{center}
+\vspace{0.5cm}
+\begin{center}
+\includegraphics[keepaspectratio=true,width=\textwidth,clip=true,trim=0mm 0mm 10mm 10mm]{ResolutionFunctionComparison_absolute.pdf}
+\end{center}
+\end{frame}
+
 % X-ray attenuation
 % SS/MS (If I don't address it directly.)
 % Alpha discrimination.
 % Muon-vetoed spectrum.
-
+% Sensitivity.
+% More spectra.
+% Denoised vs non-denoised spectra from individual background components.
 
 \end{document}
 
