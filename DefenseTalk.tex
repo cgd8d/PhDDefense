@@ -61,7 +61,7 @@
 
 \title{A Search for the Neutrinoless Double Beta
 Decay of Xenon-136 with Improved
-Sensitivity from Waveform Denoising}
+Sensitivity from Denoising}
 
 \author{Clayton G. Davis}
 \date{April 3, 2014}
@@ -92,9 +92,13 @@ Sensitivity from Waveform Denoising}
 \end{column}
 \begin{column}{.5\textwidth}
 \uncover<1>{Feynman diagram for $\beta\beta 2 \nu$ decay.   Equivalent to two single-$\beta$ decays:
-\[ 2n \rightarrow 2p + 2e^- + 2\bar{\nu}_e \]}%
+\begin{align*}
+2n &\rightarrow 2p + 2e^- + 2\bar{\nu}_e \\
+\text{eg. } ^{136}\text{Xe} &\rightarrow {}^{136}\text{Ba} + 2e^- + 2\bar{\nu}_e \end{align*} }%
 \uncover<2>{Feynman diagram for $\beta\beta 0 \nu$ decay.   Neutrinos annihilate each other:
-\[ 2n \rightarrow 2p + 2e^- \phantom{{} + 2\bar{\nu}_e}\]%
+\begin{align*}
+2n &\rightarrow 2p + 2e^- \phantom{{} + 2\bar{\nu}_e}\\
+\text{eg. } ^{136}\text{Xe} &\rightarrow {}^{136}\text{Ba} + 2e^- \phantom{{} + 2\bar{\nu}_e} \end{align*}%
 $\beta\beta 2 \nu$ is allowed in the Standard Model; $\beta\beta 0 \nu$ is not.}%
 \end{column}
 \end{columns}
@@ -146,6 +150,13 @@ We observe energy in electrons; energy in neutrinos is lost.
 \only<1>{$^{136}$Xe $\beta\beta 2\nu$ produces a smooth energy spectrum; ``missing'' energy carried off by neutrinos.}
 \only<2>{$^{136}$Xe $\beta\beta 0\nu$ has no neutrinos, so no ``missing'' energy; mono-energetic peak at $Q = 2458$ keV.}
 \only<3>{If the $\beta\beta 0\nu$ peak exists, neutrinos have Majorana mass; peak height gives a measurement of that mass.}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Observed Double-Beta Energy Spectrum (Previous Result)}
+\end{center}
+\textcolor{red}{Show previous result spectrum here, as a real example.}
 \end{frame}
 
 \section{The EXO-200 Detector}
@@ -411,8 +422,11 @@ where $N_i^R[f]$ and $N_i^I[f]$ are the real and imaginary parts of $N_i[f]$.
 \begin{center}
 \frametitle{Electronic Noise}
 \end{center}
+\vspace{1cm}
 Main detail: the electronic noise changes over time (mostly in discontinuous steps).
-\textcolor{red}{Show plot of time windows (but I should really make it show the windows used/recommended, rather than events.}
+\begin{center}
+\includegraphics[keepaspectratio=true,width=\textwidth,clip=true,trim=5mm 0mm 0mm 0mm]{APDNoiseVsActions_sumall.pdf}
+\end{center}
 \end{frame}
 
 \begin{frame}
@@ -458,7 +472,7 @@ With this simpler form for the lightmap, we can measure $R_i(\vec{x})$ and $S_i(
 
 \begin{frame}
 \begin{center}
-\frametitle{Lightmaps: $S_i(t)$}
+\frametitle{Lightmaps: $S_i(t)$ for $i = 152$}
 \end{center}
 \vspace{0.5cm}
 \begin{center}
@@ -562,6 +576,30 @@ NERSC, at LBNL, was used for this analysis; we required roughly 50,000 core-hour
 
 \begin{frame}
 \begin{center}
+\frametitle{Thorium Source Spectrum (Before and After)}
+\end{center}
+\textcolor{red}{Show thorium calibration spectrum, and that it gets narrower.}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Cobalt Source Spectrum (Before and After)}
+\end{center}
+\textcolor{red}{Show cobalt calibration spectrum, and that it gets narrower.}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Energy Resolution (Before and After)}
+\end{center}
+\vspace{0.6cm}
+\begin{center}
+\includegraphics[keepaspectratio=true,width=.95\textwidth]{RotatedReso_denoised_compVsTime.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
 \frametitle{Energy Resolution (Before and After)}
 \end{center}
 \vspace{0.5cm}
@@ -572,11 +610,21 @@ NERSC, at LBNL, was used for this analysis; we required roughly 50,000 core-hour
 
 \begin{frame}
 \begin{center}
-\frametitle{Energy Resolution (Before and After)}
+\frametitle{Best Fit (Denoised)}
 \end{center}
 \vspace{0.6cm}
 \begin{center}
-\includegraphics[keepaspectratio=true,width=.95\textwidth]{RotatedReso_denoised_compVsTime.pdf}
+\includegraphics[keepaspectratio=true,width=\textwidth,clip=true,trim=14mm 0mm 0mm 0mm]{Energy_BestFit_ss.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Best Fit (Denoised), multi-site backgrounds}
+\end{center}
+\vspace{0.6cm}
+\begin{center}
+\includegraphics[keepaspectratio=true,width=\textwidth,clip=true,trim=14mm 0mm 0mm 0mm]{Energy_BestFit_ms.pdf}
 \end{center}
 \end{frame}
 
@@ -602,23 +650,48 @@ NERSC, at LBNL, was used for this analysis; we required roughly 50,000 core-hour
 
 \begin{frame}
 \begin{center}
-\frametitle{Best Fit (Denoised)}
-\end{center}
-\vspace{0.6cm}
-\textcolor{red}{Add legend.}
-\begin{center}
-\includegraphics[keepaspectratio=true,width=\textwidth]{Energy_BestFit.pdf}
-\end{center}
-\end{frame}
-
-\begin{frame}
-\begin{center}
 \includegraphics[keepaspectratio=true,width=3.7in]{MatplotLibSensitivity.pdf}
 \end{center}
 \end{frame}
 
 \begin{frame}
-\textcolor{red}{Collaboration Slide}
+\begin{center}
+\frametitle{The EXO-200 Collaboration}
+\end{center}
+\vspace{0.5cm}
+
+{\tiny
+\textcolor{red}{University of Alabama, Tuscaloosa AL, USA}  -  D. Auty, T. Didberidze, M. Hughes, A. Piepke, R. Tsang\\
+\textcolor{red}{University of Bern, Switzerland}  -  S. Delaquis, G. Giroux, R. Gornea, T. Tolba, J-L. Vuilleumier \\
+\textcolor{red}{California Institute of Technology, Pasadena CA, USA}  -  P. Vogel \\
+\textcolor{red}{Carleton University, Ottawa ON, Canada}  -  V. Basque, M. Dunford, K. Graham,  C. Hargrove, R. Killick, T. Koffas, F. Leonard, C. Licciardi, M.P. Rozo, D. Sinclair\\
+\textcolor{red}{Colorado State University, Fort Collins CO, USA}  -  C. Benitez-Medina, C. Chambers, A. Craycraft, W. Fairbank, Jr., T. Walton\\
+\textcolor{red}{Drexel University, Philadelphia PA, USA}  -  M.J. Dolinski, M.J. Jewell, Y.H. Lin, E. Smith, Y.-R Yen\\
+\textcolor{red}{Duke University, Durham NC, USA}  -  P.S. Barbeau\\
+\textcolor{red}{IHEP Beijing, People's Republic of China}  -  G. Cao, X. Jiang, L. Wen, Y. Zhao \\
+\textcolor{red}{University of Illinois, Urbana-Champaign IL, USA}  -  D. Beck, M. Coon, J. Ling, M. Tarka, J. Walton, L. Yang \\
+\textcolor{red}{Indiana University, Bloomington IN, USA}  -  J. Albert, S. Daugherty,  T. Johnson, L.J. Kaufman\\
+\textcolor{red}{University of California, Irvine, Irvine CA, USA}  -  M. Moe\\
+\textcolor{red}{ITEP Moscow, Russia}  -  D. Akimov, I. Alexandrov, V. Belov, A. Burenkov, M. Danilov, A. Dolgolenko, A. Karelin, A. Kovalenko, A. Kuchenkov, V. Stekhanov, O. Zeldovich\\
+\textcolor{red}{Laurentian University, Sudbury ON, Canada}  -  B. Cleveland, A. Der Mesrobian-Kabakian, J. Farine, B. Mong, U. Wichoski\\
+\textcolor{red}{University of Maryland, College Park MD, USA}  -  C. Davis, A. Dobi, C. Hall \\
+\textcolor{red}{University of Massachusetts, Amherst MA, USA}  -  J. Abdollahi, T. Daniels, S. Johnston, K. Kumar, A. Pocar, D. Shy\\
+\textcolor{red}{University of Seoul, South Korea}  -  D.S. Leonard\\
+\textcolor{red}{SLAC National Accelerator Laboratory, Menlo Park CA, USA}  -  M. Breidenbach, R. Conley, A. Dragone, K. Fouts, R. Herbst, S. Herrin, A. Johnson, R. MacLellan, K. Nishimura, A. Odian, C.Y. Prescott, P.C. Rowson, J.J. Russell, K. Skarpaas, M. Swift, A. Waite, M. Wittgen\\
+\textcolor{red}{Stanford University, Stanford CA, USA}  -  J. Bonatt, T. Brunner, J. Chaves, J. Davis, R. DeVoe, D. Fudenberg, G. Gratta, S.Kravitz, D. Moore, I. Ostrovskiy, 
+A. Rivas, A. Schubert, D. Tosi, K. Twelker, M. Weber\\
+\textcolor{red}{Technical University of Munich, Garching, Germany}  -  W. Feldmeier, P. Fierlinger,  M. Marino\\
+\textcolor{red}{TRIUMF, Vancouver BC, Canada} – J. Dilling, R. Krucken, F. Reti\`ere, V. Strickland\\
+}
+
+\end{frame}
+
+\begin{frame}
+\begin{center}
+{\Huge Thank You!\\[\baselineskip]
+
+Questions?}
+\end{center}
 \end{frame}
 
 % What does it mean that our optimization problem is positive-definite before the constraint is imposed, but not after?  Are we actually not getting an optimal solution??
@@ -666,6 +739,16 @@ So, the Anscombe transformation doesn't really help us here.
 \vspace{0.5cm}
 \begin{center}
 \includegraphics[keepaspectratio=true,width=\textwidth,clip=true,trim=0mm 0mm 10mm 10mm]{ResolutionFunctionComparison_absolute.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Mean Sensitivity}
+\end{center}
+\vspace{0.6cm}
+\begin{center}
+\includegraphics[keepaspectratio=true,width=\textwidth]{toy_mc_sensitivity.pdf}
 \end{center}
 \end{frame}
 
