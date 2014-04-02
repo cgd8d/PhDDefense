@@ -154,9 +154,18 @@ We observe energy in electrons; energy in neutrinos is lost.
 
 \begin{frame}
 \begin{center}
-\frametitle{Observed Double-Beta Energy Spectrum (Previous Result)}
+\frametitle{Observed Energy Spectrum (May 2012)}
 \end{center}
-\textcolor{red}{Show previous result spectrum here, as a real example.}
+\vspace{0.4cm}%
+\begin{columns}
+\begin{column}{.8\textwidth}
+\includegraphics[keepaspectratio=true,width=\textwidth,clip=true,trim=0mm 5mm 0mm 96mm]{OldSSSpectrum.eps}\\
+\includegraphics[keepaspectratio=true,width=\textwidth,clip=true,trim=0mm 5mm 0mm 96mm]{OldSSSpectrum_zoom.eps}
+\end{column}
+\begin{column}{0.2\textwidth}
+32.5 kg-yrs (vs. 99.8 kg-yrs for the present analysis)
+\end{column}
+\end{columns}
 \end{frame}
 
 \section{The EXO-200 Detector}
@@ -236,15 +245,21 @@ They are anticorrelated -- better energy resolution from both together than eith
 \frametitle{\hfill Primary Backgrounds:\\\hfill \textcolor{red}{$^{232}$Th}, $^{238}$U, and $^{137}$Xe}
 \end{center}
 \begin{columns}
-\begin{column}{.6\textwidth}
+\begin{column}{.59\textwidth}
+\vspace{-0.5cm}\\%
+Simulation\\
 \includegraphics[keepaspectratio=true,width=\textwidth]{Th_Spectra_vs_Res.pdf}
 \end{column}
-\begin{column}{.4\textwidth}
-Not all backgrounds are smooth.  $^{232}$Th has a gamma line at 2615 keV, so resolution reduces background sharply until 2457 and 2615 keV are well-separated around 1.2\%.\\[\baselineskip]
+\begin{column}{.41\textwidth}
+\vspace{0.5cm}%
 
-Beyond that, resolution for $^{232}$Th is less important (though still helpful).
+Energy resolution is measured as $\sigma$/mean of a peak at the $Q$-value.  Typically 1.5-2\% for us.\\[\baselineskip]
 
-\textcolor{red}{Adjust text to reflect changed ordering of slides.}
+Impact of background goes like integral of pdf between red $2\sigma$ lines.\\[\baselineskip]
+
+$^{232}$Th gamma line at 2615 keV, so energy resolution has strong impact down to about 1.2\%.\\[\baselineskip]
+
+Beyond that, impact on $^{232}$Th is much less.
 \end{column}
 \end{columns}
 \end{frame}
@@ -254,15 +269,19 @@ Beyond that, resolution for $^{232}$Th is less important (though still helpful).
 \frametitle{\hfill Primary Backgrounds:\\\hfill $^{232}$Th, \textcolor{red}{$^{238}$U}, and $^{137}$Xe}
 \end{center}
 \begin{columns}
-\begin{column}{.6\textwidth}
+\begin{column}{.59\textwidth}
+\vspace{-0.5cm}\\%
+Simulation\\
 \includegraphics[keepaspectratio=true,width=\textwidth]{U_Spectra_vs_Res.pdf}
 \end{column}
-\begin{column}{.4\textwidth}
+\begin{column}{.41\textwidth}
 \vspace{0.5cm}
 
 $^{238}$U has a 2448-keV gamma line, indistinguishable from 2457-keV $Q$-value except with extremely good resolution.\\[\baselineskip]
 
-So, even down to 0.4\% energy resolution, most of the $^{238}$U peak at 2448 keV is still within our energy window.  $^{238}$U backgrounds aren't significantly reduced by resolution improvements.
+So, even down to 0.4\% energy resolution, most of the $^{238}$U peak at 2448 keV is still within our energy window.  Impact of resolution on $^{238}$U backgrounds is small.
+
+%$^{238}$U backgrounds aren't significantly reduced by resolution improvements.
 \end{column}
 \end{columns}
 \end{frame}
@@ -272,17 +291,18 @@ So, even down to 0.4\% energy resolution, most of the $^{238}$U peak at 2448 keV
 \frametitle{\hfill Primary Backgrounds:\\\hfill $^{232}$Th, $^{238}$U, and \textcolor{red}{$^{137}$Xe}}
 \end{center}
 \begin{columns}
-\begin{column}{.6\textwidth}
+\begin{column}{.59\textwidth}
+\vspace{-0.5cm}\\%
+Simulation\\
 \includegraphics[keepaspectratio=true,width=\textwidth]{Xe_Spectra_vs_Res.pdf}
 \end{column}
-\begin{column}{.4\textwidth}
-\vspace{.5cm}
+\begin{column}{.41\textwidth}
+\vspace{.5cm}%
 
-Energy resolution is measured as $\sigma$/mean of a mono-energetic peak at the $Q$-value.  Typically 1.5-2\% for EXO-200.\\[\baselineskip]
+$^{137}$Xe is a cosmogenic background from $^{136}$Xe which $\beta$-decays; endpoint of 4173 keV.\\[\baselineskip]
 
-Better resolution gives a sharper $\beta\beta 0\nu$ peak, so less background in that energy window.\\[\baselineskip]
+$^{137}$Xe spectrum is smooth around $Q$-value, so background impact goes linearly with resolution.
 
-$^{137}$Xe spectrum is smooth around $Q$-value; background proportional to energy resolution.
 \end{column}
 \end{columns}
 \end{frame}
@@ -484,7 +504,7 @@ With this simpler form for the lightmap, we can measure $R_i(\vec{x})$ and $S_i(
 \vspace{1cm}
 The expected pulse height $M_i$ on a channel $i$ from a deposit at position $\vec{x}$ and time $t$ is described by a lightmap $L_i(\vec{x},t)$:
 \[\left<M_i\right> = L_i(\vec{x},t)E.\]
-What about covariances of $M_i$?\\[\baselineskip]
+What about covariances of $M_i$?\\[.5\baselineskip]
 
 \parbox [t][60mm]{\textwidth}{ % To avoid jitter from changing vertical spacing.
 \only<1>{
@@ -528,12 +548,21 @@ Photons randomly deposit on APDs (or are not observed).
 \end{center}
 }
 \only<2>{
-\textcolor{red}{Show a simplified picture of an APD as:
-\begin{itemize}
-\item A surface where photoelectrons are produced (quantum efficiency).
-\item A volume where gain is applied (gain fluctuations).
+We treat an APD as having two operational phases:
+\begin{columns}[T]
+\begin{column}{.6\textwidth}
+\includegraphics[keepaspectratio=true,width=\textwidth,clip=true,trim=18mm 115mm 5mm 0mm]{APDCrossSection.png}\\
+{\tiny Moszyski et al., NIMA 2002.}
+\end{column}
+\begin{column}{.4\textwidth}
+\vspace{-0.2cm}\begin{itemize}[leftmargin=*]
+\item Active surface: photons are converted to photoelectrons (with a quantum efficiency).
+\item Avalanche region: photoelectrons are amplified by avalanche (APD gain).
 \end{itemize}
-}}}
+Both processes produce Poissonian fluctuations.
+\end{column}
+\end{columns}
+}}
 \end{frame}
 
 \begin{frame}
