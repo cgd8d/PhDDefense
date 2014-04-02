@@ -233,7 +233,43 @@ They are anticorrelated -- better energy resolution from both together than eith
 
 \begin{frame}
 \begin{center}
-\frametitle{\hfill Primary Backgrounds:\\\hfill \textcolor{red}{$^{137}$Xe}, $^{232}$Th, and $^{238}$U}
+\frametitle{\hfill Primary Backgrounds:\\\hfill \textcolor{red}{$^{232}$Th}, $^{238}$U, and $^{137}$Xe}
+\end{center}
+\begin{columns}
+\begin{column}{.6\textwidth}
+\includegraphics[keepaspectratio=true,width=\textwidth]{Th_Spectra_vs_Res.pdf}
+\end{column}
+\begin{column}{.4\textwidth}
+Not all backgrounds are smooth.  $^{232}$Th has a gamma line at 2615 keV, so resolution reduces background sharply until 2457 and 2615 keV are well-separated around 1.2\%.\\[\baselineskip]
+
+Beyond that, resolution for $^{232}$Th is less important (though still helpful).
+
+\textcolor{red}{Adjust text to reflect changed ordering of slides.}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{\hfill Primary Backgrounds:\\\hfill $^{232}$Th, \textcolor{red}{$^{238}$U}, and $^{137}$Xe}
+\end{center}
+\begin{columns}
+\begin{column}{.6\textwidth}
+\includegraphics[keepaspectratio=true,width=\textwidth]{U_Spectra_vs_Res.pdf}
+\end{column}
+\begin{column}{.4\textwidth}
+\vspace{0.5cm}
+
+$^{238}$U has a 2448-keV gamma line, indistinguishable from 2457-keV $Q$-value except with extremely good resolution.\\[\baselineskip]
+
+So, even down to 0.4\% energy resolution, most of the $^{238}$U peak at 2448 keV is still within our energy window.  $^{238}$U backgrounds aren't significantly reduced by resolution improvements.
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{\hfill Primary Backgrounds:\\\hfill $^{232}$Th, $^{238}$U, and \textcolor{red}{$^{137}$Xe}}
 \end{center}
 \begin{columns}
 \begin{column}{.6\textwidth}
@@ -247,40 +283,6 @@ Energy resolution is measured as $\sigma$/mean of a mono-energetic peak at the $
 Better resolution gives a sharper $\beta\beta 0\nu$ peak, so less background in that energy window.\\[\baselineskip]
 
 $^{137}$Xe spectrum is smooth around $Q$-value; background proportional to energy resolution.
-\end{column}
-\end{columns}
-\end{frame}
-
-\begin{frame}
-\begin{center}
-\frametitle{\hfill Primary Backgrounds:\\\hfill $^{137}$Xe, \textcolor{red}{$^{232}$Th}, and $^{238}$U}
-\end{center}
-\begin{columns}
-\begin{column}{.6\textwidth}
-\includegraphics[keepaspectratio=true,width=\textwidth]{Th_Spectra_vs_Res.pdf}
-\end{column}
-\begin{column}{.4\textwidth}
-Not all backgrounds are smooth.  $^{232}$Th has a gamma line at 2615 keV, so resolution reduces background sharply until 2457 and 2615 keV are well-separated around 1.2\%.\\[\baselineskip]
-
-Beyond that, resolution for $^{232}$Th is less important (though still helpful).
-\end{column}
-\end{columns}
-\end{frame}
-
-\begin{frame}
-\begin{center}
-\frametitle{\hfill Primary Backgrounds:\\\hfill $^{137}$Xe, $^{232}$Th, and \textcolor{red}{$^{238}$U}}
-\end{center}
-\begin{columns}
-\begin{column}{.6\textwidth}
-\includegraphics[keepaspectratio=true,width=\textwidth]{U_Spectra_vs_Res.pdf}
-\end{column}
-\begin{column}{.4\textwidth}
-\vspace{0.5cm}
-
-$^{238}$U has a 2448-keV gamma line, indistinguishable from 2457-keV $Q$-value except with extremely good resolution.\\[\baselineskip]
-
-So, even down to 0.4\% energy resolution, most of the $^{238}$U peak at 2448 keV is still within our energy window.  $^{238}$U backgrounds aren't significantly reduced by resolution improvements.
 \end{column}
 \end{columns}
 \end{frame}
@@ -372,12 +374,6 @@ There are also three approaches to reducing the impact of noise:
 \vspace{-0.5cm}\hfill Noise correlations at 78.6 kHz.\\
 \includegraphics[keepaspectratio=true,width=\textwidth]{NoiseHeatPlot_161.pdf}} %Corresponding to frequency 78.6 kHz (f=161).
 }\end{center}
-%\textcolor{red}{On the bottom part (or right side) of the screen I can show three pictures which demonstrate how they'll be used:}
-%\begin{itemize}
-%\item power spectrum of noise vs signal.
-%\item APD pulse magnitude vs channel (left side of event display for a typical SS Th event).
-%\item Noise correlation heat plot, per Carter's request.
-%\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -576,16 +572,32 @@ NERSC, at LBNL, was used for this analysis; we required roughly 50,000 core-hour
 
 \begin{frame}
 \begin{center}
-\frametitle{Thorium Source Spectrum (Before and After)}
+\frametitle{$^{228}$Th Source Spectrum (Before and After)}
 \end{center}
-\textcolor{red}{Show thorium calibration spectrum, and that it gets narrower.}
+\vspace{1cm}
+\begin{center}
+\includegraphics[keepaspectratio=true,width=\textwidth]{ThSourceSpectrumComparison.pdf}
+\end{center}
 \end{frame}
 
 \begin{frame}
 \begin{center}
-\frametitle{Cobalt Source Spectrum (Before and After)}
+\frametitle{$^{60}$Co Source Spectrum (Before and After)}
 \end{center}
-\textcolor{red}{Show cobalt calibration spectrum, and that it gets narrower.}
+\vspace{1cm}
+\begin{center}
+\includegraphics[keepaspectratio=true,width=\textwidth]{CoSourceSpectrumComparison.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{$^{137}$Cs Source Spectrum (Before and After)}
+\end{center}
+\vspace{1cm}
+\begin{center}
+\includegraphics[keepaspectratio=true,width=\textwidth]{CsSourceSpectrumComparison.pdf}
+\end{center}
 \end{frame}
 
 \begin{frame}
