@@ -144,12 +144,17 @@ We observe energy in electrons; energy in neutrinos is lost.
 
 \begin{frame}
 \begin{center}
-\frametitle{Ideal Double-Beta Energy Spectrum}
+\frametitle{\vspace{-0.3cm}%
+Ideal Double-Beta Energy Spectrum}
 \end{center}
-\includegraphics[keepaspectratio=true,width=\textwidth]{IdealSpectrum.pdf}\\
+\vspace{-0.5cm}%
+\parbox [t][70mm]{\textwidth}{ % To avoid jitter from changing vertical spacing.
+\frame{\includegraphics[keepaspectratio=true,width=\textwidth]{IdealSpectrum.pdf}}\\%[-0.5cm]
 \only<1>{$^{136}$Xe $\beta\beta 2\nu$ produces a smooth energy spectrum; ``missing'' energy carried off by neutrinos.}
 \only<2>{$^{136}$Xe $\beta\beta 0\nu$ has no neutrinos, so no ``missing'' energy; mono-energetic peak at $Q = 2458$ keV.}
-\only<3>{If the $\beta\beta 0\nu$ peak exists, neutrinos have Majorana mass; peak height gives a measurement of that mass.}
+\only<3>{If the $\beta\beta 0\nu$ peak exists, neutrinos have Majorana mass; peak height gives a measurement of that mass:\\[-\baselineskip]
+\[\left[T^{0\nu}_{1/2}\right]^{-1} = G_{0\nu}(Q_{\beta\beta}, Z) \left| M_{0\nu}\right|^2 \left< m_{\beta\beta} \right>^2.\]}
+}
 \end{frame}
 
 \begin{frame}
@@ -217,10 +222,13 @@ Xenon continuously circulates through purifiers outside of the cryostat.
 \begin{center}
 \frametitle{EXO-200 TPC}
 \end{center}
-\vspace{1cm}
+%\vspace{1cm}
+\parbox [t][70mm]{\textwidth}{ % To avoid jitter from changing vertical spacing.
 \begin{center}
-\includegraphics[keepaspectratio=true,width=.8\textwidth]{ChargeDrift2DModel.png}
+\includegraphics<1>[keepaspectratio=true,width=.8\textwidth]{ChargeDrift2DModel.png}
+\includegraphics<2>[keepaspectratio=true,width=\textwidth]{PlatterWGO7.png}
 \end{center}
+}
 Charge drifts under an electric field and is collected by wires on the anodes.  Light is observed by APDs behind the wires.
 \end{frame}
 
@@ -356,7 +364,7 @@ $^{137}$Xe spectrum is smooth around $Q$-value, so background impact goes linear
 \end{center}
 \vspace{1cm}
 \includegraphics[keepaspectratio=true,width=\textwidth,clip=true,trim=0mm 12mm 0mm 10mm]{Run4705Ev2_noiseEventDisplay.png}\\
-\uncover<2>{Correlated noise $\Rightarrow$ offline denoising of some sort should work!}
+Correlated noise $\Rightarrow$ offline denoising of some sort should work!
 \end{frame}
 
 \section{Denoising}
@@ -594,8 +602,7 @@ Constraint:  estimator is unbiased, $\left<E-\widehat{E}\right>=0$.
 \begin{center}
 \frametitle{Denoising: An Optimization Problem}
 \end{center}
-The solution is a big matrix equation
-\uncover<2>{which we write in a compact way:
+The solution is a big matrix equation which we write in a compact way:
 \[\begin{pmatrix}\mathbf{N+P}&C^{\top}\\C & 0\end{pmatrix}\begin{pmatrix}A\\\lambda\end{pmatrix} = \begin{pmatrix}0\\1\end{pmatrix}.\]
 
 The LHS matrix is a $143,\!291 \times 143,\!291$ sparse matrix with roughly twenty million non-zero entries.\\[\baselineskip]
@@ -603,7 +610,6 @@ The LHS matrix is a $143,\!291 \times 143,\!291$ sparse matrix with roughly twen
 We need to solve this system once {\bf for each event}, and there are hundreds of millions of events.  Fortunately this is an embarassingly parallel problem, so we can just find a big computing system and do it.\\[\baselineskip]
 
 NERSC, at LBNL, was used for this analysis; we required roughly 50,000 core-hours to do this processing.
-}
 \end{frame}
 
 \section{Results}
@@ -656,6 +662,19 @@ NERSC, at LBNL, was used for this analysis; we required roughly 50,000 core-hour
 \begin{center}
 \includegraphics[keepaspectratio=true,width=\textwidth,clip=true,trim=0mm 0mm 10mm 10mm]{ResolutionFunctionComparison_relative.pdf}
 \end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Relative Change in $E^{scint}$ vs. Energy}
+\end{center}
+\vspace{0.7cm}%
+\begin{center}
+\includegraphics[keepaspectratio=true,width=\textwidth,clip=true,trim=0mm 0mm 0mm 10mm]{EventComparison_ratio_vs_E.pdf}
+\end{center}
+\vspace{-0.3cm}%
+Lower-energy events tend to move more, as expected; very few outliers.
+A few events cannot be denoised by the current code; these give a ratio of zero.
 \end{frame}
 
 \begin{frame}
@@ -802,7 +821,78 @@ So, the Anscombe transformation doesn't really help us here.
 \end{center}
 \end{frame}
 
-% X-ray attenuation
+\begin{frame}
+\begin{center}
+\frametitle{KZ Spectrum}
+\end{center}
+\begin{center}
+\includegraphics[keepaspectratio=true,angle=-90,width=\textwidth]{KZ_spectrum.eps}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{KZ Spectrum}
+\end{center}
+\begin{center}
+\includegraphics[keepaspectratio=true,angle=-90,width=\textwidth]{KZ_spectrum_zoom.eps}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Gerda Spectrum}
+\end{center}
+\begin{center}
+\includegraphics[keepaspectratio=true,width=\textwidth]{Gerda_spectrum.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{KK\&K Spectrum}
+\end{center}
+\begin{center}
+\includegraphics[keepaspectratio=true,width=\textwidth]{KKandKClaim.eps}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\includegraphics[keepaspectratio=true,width=3.7in]{MatplotLibSensitivity_withClaim.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{columns}
+\begin{column}{0.75\textwidth}
+\includegraphics[keepaspectratio=true,width=\textwidth]{XrayAttenuationXenon.pdf}
+\end{column}
+\begin{column}{0.25\textwidth}
+\textcolor{blue}{X-ray Attenuation}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{NEST Scint. vs Overall Resolution}
+\end{center}
+\begin{center}
+\includegraphics[keepaspectratio=true,width=\textwidth]{resoDataMC_800eRMSInIonization_Comp.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{$\Delta E$ vs. Run}
+\end{center}
+\vspace{0.5cm}
+\begin{center}
+\includegraphics[keepaspectratio=true,width=\textwidth]{EventComparison_diff_vs_run.pdf}
+\end{center}
+\end{frame}
+
 % SS/MS (If I don't address it directly.)   <---
 % Alpha discrimination.
 % Muon-vetoed spectrum.
