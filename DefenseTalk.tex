@@ -149,7 +149,7 @@ Ideal Double-Beta Energy Spectrum}
 \end{center}
 \vspace{-0.5cm}%
 \parbox [t][70mm]{\textwidth}{ % To avoid jitter from changing vertical spacing.
-\frame{\includegraphics[keepaspectratio=true,width=\textwidth]{IdealSpectrum.pdf}}\\%[-0.5cm]
+\includegraphics[keepaspectratio=true,width=\textwidth]{IdealSpectrum.pdf}\\%[-0.5cm]
 \only<1>{$^{136}$Xe $\beta\beta 2\nu$ produces a smooth energy spectrum; ``missing'' energy carried off by neutrinos.}
 \only<2>{$^{136}$Xe $\beta\beta 0\nu$ has no neutrinos, so no ``missing'' energy; mono-energetic peak at $Q = 2458$ keV.}
 \only<3>{If the $\beta\beta 0\nu$ peak exists, neutrinos have Majorana mass; peak height gives a measurement of that mass:\\[-\baselineskip]
@@ -246,6 +246,15 @@ Energy is independently measured from scintillation and ionization.\\[\baselines
 They are anticorrelated -- better energy resolution from both together than either independently.
 \end{column}
 \end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Impact of Rotated Energy}
+\end{center}
+\begin{center}
+\includegraphics[keepaspectratio=true,width=\textwidth]{RotationTh2D_ImprovementInResolution.png}
+\end{center}
 \end{frame}
 
 \begin{frame}
@@ -699,6 +708,16 @@ A few events cannot be denoised by the current code; these give a ratio of zero.
 
 \begin{frame}
 \begin{center}
+\frametitle{Fits around $^{40}$K (Before and After)}
+\end{center}
+\vspace{0.6cm}
+\begin{center}
+\includegraphics[keepaspectratio=true,width=\textwidth]{DenoisedVsUndenoised_TotalPdfsWithData_k40range.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
 \frametitle{Fits around $\beta \beta 0\nu$ (Before and After)}
 \end{center}
 \vspace{0.6cm}
@@ -709,12 +728,25 @@ A few events cannot be denoised by the current code; these give a ratio of zero.
 
 \begin{frame}
 \begin{center}
-\frametitle{Profile Likelihood (Before and After)}
+\frametitle{$\beta\beta 0\nu$ Profile Likelihood (Before and After)}
 \end{center}
 \vspace{0.6cm}
 \begin{center}
 \includegraphics[keepaspectratio=true,width=\textwidth]{DenoisedVsUndenoised_bb0nProfiles.pdf}
 \end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Results}
+\end{center}
+At 90\% confidence:
+\begin{itemize}
+\item Fewer than 24 $\beta\beta 0\nu$ counts vs 27 without denoising.
+\item $T_{1/2}^{0\nu} > 1.1 \cdot 10^{25}$ years vs $9.8 \cdot 10^{24}$ without denoising.
+\item $\left<m_{\beta\beta}\right> < 190-450$ meV vs $200-480$ without denoising.
+\end{itemize}
+ROI background is reduced by $32\%$, corresponding to an even better improvement in average sensitivity: $17\%$ in $T_{1/2}$ and $9\%$ in $\left<m_{\beta\beta}\right>$ (depending on exact mix of backgrounds).
 \end{frame}
 
 \begin{frame}
@@ -790,15 +822,6 @@ Questions?}
 The Anscombe transformation (and generalizations) are designed to transform Poisson noise into Gaussian noise.  However, for this purpose ``noise'' is defined to mean noise {\bf uncorrelated with pulse}.  We, on the other hand, are looking to understand noise which {\bf is} correlated with the pulse, and then minimize its effect.
 
 So, the Anscombe transformation doesn't really help us here.
-\end{frame}
-
-\begin{frame}
-\begin{center}
-\frametitle{Impact of Rotated Energy}
-\end{center}
-\begin{center}
-\includegraphics[keepaspectratio=true,width=\textwidth]{RotationTh2D_ImprovementInResolution.png}
-\end{center}
 \end{frame}
 
 \begin{frame}
@@ -890,6 +913,36 @@ So, the Anscombe transformation doesn't really help us here.
 \vspace{0.5cm}
 \begin{center}
 \includegraphics[keepaspectratio=true,width=\textwidth]{EventComparison_diff_vs_run.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Thorium Fit in ROI}
+\end{center}
+\vspace{0.5cm}
+\begin{center}
+\includegraphics[keepaspectratio=true,width=\textwidth]{DenoisedVsUndenoised_SSPdf_ThOnly.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{Uranium Fit in ROI}
+\end{center}
+\vspace{0.5cm}
+\begin{center}
+\includegraphics[keepaspectratio=true,width=\textwidth]{DenoisedVsUndenoised_SSPdf_UOnly.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\frametitle{$^{137}$Xe Fit in ROI}
+\end{center}
+\vspace{0.5cm}
+\begin{center}
+\includegraphics[keepaspectratio=true,width=\textwidth]{DenoisedVsUndenoised_SSPdf_Xe137Only.pdf}
 \end{center}
 \end{frame}
 
